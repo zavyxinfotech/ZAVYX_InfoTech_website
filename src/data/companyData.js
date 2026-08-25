@@ -89,49 +89,67 @@ export const companyData = {
 
   team: [
     {
-      name: "S. Dinesh Kumar",
-      role: "Founder & Lead Solutions Architect",
-      focus: "Full-Stack Architecture, Enterprise CRM/ERP & Strategic Growth",
-      experience: "8+ Years in Enterprise Engineering",
-      skills: ["System Design", "React/Node.js", "ERP Systems", "Tech Strategy"],
-      avatarText: "DK",
-      accent: "from-brand-500 to-brand-700"
+      name: "Sakthivel Muthusamy",
+      role: "Founder",
+      focus: "Vision, Strategic Leadership & Business Growth",
+      experience: "Executive Leadership & Tech Strategy",
+      skills: ["Strategic Growth", "Enterprise Leadership", "Business Architecture"],
+      avatarText: "SM",
+      accent: "from-brand-600 to-indigo-700"
     },
     {
-      name: "K. Pravin Raj",
-      role: "Lead Full-Stack Web Developer",
-      focus: "High-Performance Websites, Next.js, React & 48-Hour Rapid Delivery",
-      experience: "Modern Web Frameworks Specialist",
-      skills: ["React 18", "Tailwind CSS", "REST/GraphQL APIs", "Core Web Vitals"],
-      avatarText: "PR",
-      accent: "from-blue-500 to-indigo-600"
+      name: "Saranya Sakthivel",
+      role: "Head of Operations",
+      focus: "Operational Excellence, Project Execution & Quality Assurance",
+      experience: "Operations & Delivery Management",
+      skills: ["Operations Strategy", "Process Optimization", "Milestone Delivery"],
+      avatarText: "SS",
+      accent: "from-purple-600 to-indigo-600"
     },
     {
-      name: "M. Nithya Shree",
-      role: "Head of UI/UX & Brand Identity",
-      focus: "Conversion-Focused Interfaces, Design Systems & Visual Brand Strategy",
-      experience: "Human-Centered Design Practitioner",
-      skills: ["Figma", "Design Systems", "Prototyping", "Brand Guidelines"],
+      name: "Ramya R",
+      role: "Relationship Manager",
+      focus: "Client Engagement, Strategic Partnerships & Account Success",
+      experience: "Client Relations & Partnership Strategy",
+      skills: ["Client Communication", "Account Management", "Value Delivery"],
+      avatarText: "RR",
+      accent: "from-rose-500 to-pink-600"
+    },
+    {
+      name: "Nithya Sri S",
+      role: "Business Analyst",
+      focus: "Market Intelligence, Workflow Mapping & Solution Requirements",
+      experience: "Business Analysis & Systems Planning",
+      skills: ["Requirements Gathering", "Workflow Analysis", "System Design"],
       avatarText: "NS",
       accent: "from-teal-500 to-emerald-600"
     },
     {
-      name: "R. Vignesh",
-      role: "AI & Automation Systems Engineer",
-      focus: "Meta WhatsApp Business APIs, LLM Agents & Zero-Touch Workflows",
-      experience: "Automation & API Integrations",
-      skills: ["WhatsApp API", "n8n/Make", "LLM Pipelines", "Webhooks"],
-      avatarText: "RV",
-      accent: "from-violet-500 to-purple-700"
+      name: "Vijayadarshini N M",
+      role: "UI/UX Designer",
+      focus: "Human-Centered Design, Wireframing & Modern UI Systems",
+      experience: "UI/UX Design Systems & Prototyping",
+      skills: ["Figma", "UI/UX Design", "Design Systems", "Interaction Design"],
+      avatarText: "VN",
+      accent: "from-amber-500 to-orange-600"
     },
     {
-      name: "A. Karthikeyan",
-      role: "Cloud DevOps & Infrastructure Lead",
-      focus: "High-Availability Servers, AWS/Cloudflare CDN & 99.9% Uptime",
-      experience: "Cloud Security & Scalability",
-      skills: ["Cloudflare CDN", "AWS/Linux", "SSL/WAF Security", "Database Tuning"],
-      avatarText: "AK",
-      accent: "from-sky-500 to-cyan-600"
+      name: "Archana R",
+      role: "HR Manager",
+      focus: "Talent Acquisition, People Culture & Organizational Development",
+      experience: "Human Resources & Talent Management",
+      skills: ["Talent Sourcing", "Team Culture", "People Operations"],
+      avatarText: "AR",
+      accent: "from-blue-500 to-cyan-600"
+    },
+    {
+      name: "Vasuki T",
+      role: "Full Stack Developer",
+      focus: "Modern Web Engineering, Scalable Architecture & Full-Stack Systems",
+      experience: "Full-Stack Web & Software Engineering",
+      skills: ["React", "Node.js", "REST APIs", "Modern Frameworks"],
+      avatarText: "VT",
+      accent: "from-emerald-500 to-teal-700"
     }
   ],
 

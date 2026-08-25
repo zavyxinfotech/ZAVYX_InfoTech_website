@@ -16,7 +16,7 @@ export default function WebsiteRapidLaunchHighlight({ className = "" }) {
       
       {/* Top Banner Tag: 48h Badge */}
       <div className="flex items-center justify-start mb-6 sm:mb-8">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full  text-rose-700 text-xs sm:text-sm font-bold shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full  text-rose-700 text-xs sm:text-lg font-bold shadow-xs">
           <Clock className="w-4 h-4 text-rose-600 animate-spin-slow" />
           <span>GO LIVE IN 48 HOURS (2 DAYS)</span>
         </div>
@@ -30,7 +30,7 @@ export default function WebsiteRapidLaunchHighlight({ className = "" }) {
           
           <div className="space-y-2.5 sm:space-y-3">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 font-display leading-[1.15] tracking-tight">
-              Website Design &amp; Development in <span className="bg-gradient-to-r from-emerald-600 via-brand-600 to-rose-600 bg-clip-text text-transparent">2 Days</span>
+              Website Design &amp; Development in <span className="bg-gradient-to-r from-emerald-600 via-brand-600 to-rose-600 bg-clip-text text-transparent">  <br></br>2 Days</span>
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
