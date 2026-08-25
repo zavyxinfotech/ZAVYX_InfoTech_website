@@ -31,6 +31,7 @@ export const companyData = {
   about: {
     story: "Zavyx InfoTech was built from a vision to create smart digital solutions for modern businesses. Driven by passion, creativity, and innovation, the company is growing as a technology partner helping brands build, automate, and scale for the future.",
     mission: "To empower businesses with innovative digital solutions that simplify operations, improve customer engagement, and accelerate growth through technology, automation, and creative innovation.",
+    vision: "To be the premier technology partner for modern enterprises and fast-growing businesses, recognized globally for engineering transformative digital systems, intelligent automation, and sustainable technological excellence.",
     values: [
       {
         id: "innovation",
