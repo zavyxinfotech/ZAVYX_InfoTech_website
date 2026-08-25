@@ -25,7 +25,7 @@ export const companyData = {
       full: "#2155, Fortune City, Global Market – Texvalley, NH 544 Bengaluru–Cochin National Highway, Chithode, Erode – 638 102, Tamil Nadu, India"
     },
     googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.3934371427215!2d77.6781216757112!3d11.37895474812328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96c1410d7a641%3A0x6e9f64bf33bfa861!2sTexvalley!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-    workingHours: "Mon – Sat: 9:30 AM – 7:00 PM IST"
+    workingHours: "Mon – Fri: 9:30 AM – 7:00 PM IST"
   },
 
   about: {

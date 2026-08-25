@@ -89,7 +89,7 @@ export default function Contact() {
                     {companyData.contact.phoneDisplay}
                   </p>
                   <p className="text-xs text-slate-600 mt-0.5">
-                    Available Mon – Sat: 9:30 AM – 7:00 PM IST
+                    Available Mon – Fri: 9:30 AM – 7:00 PM IST
                   </p>
                 </div>
               </a>

@@ -5,17 +5,17 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { servicesData } from '../../data/servicesData';
-import logoImg from '../../assets/logo/logo.png';
+import logoImg from '../../assets/logo/ZAVYX_logo_cropped.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-50 border-t border-slate-200/80 pt-10 sm:pt-14 pb-2 text-slate-700">
+    <footer className="bg-slate-50 border-t border-slate-200/80 pt-10 sm:pt-14 pb-4 text-slate-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ===================== 3 EQUALLY SPACED MENU & SERVICES COLUMNS ===================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10 lg:gap-16 max-w-6xl mx-auto pb-8 sm:pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-16 max-w-6xl mx-auto pb-8 sm:pb-10">
           
           {/* Column 1: MENU */}
           <div className="space-y-2.5 sm:space-y-3.5">
@@ -117,7 +117,7 @@ export default function Footer() {
 
       </div>
 
-      {/* ===================== FULL-WIDTH GRAND FOOTER LOGO (STATIC, NO HOVER EFFECT) ===================== */}
+      {/* ===================== FULL-WIDTH GRAND FOOTER LOGO (CROPPED, NO TAGLINE) ===================== */}
       <div className="w-full relative overflow-hidden pt-2 pb-2 select-none">
         
         {/* Ambient Gradient Glow in Background */}
@@ -138,17 +138,17 @@ export default function Footer() {
         />
 
         <Link to="/" className="block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 focus:outline-none cursor-default">
-          <div className="relative inline-flex flex-col items-center justify-center w-full py-1">
+          <div className="relative inline-flex flex-col items-center justify-center w-full ">
             
-            {/* Grand Centered Big Logo without Hover Scale Effect */}
-            <div className="relative w-full flex items-center justify-center">
+            {/* Grand Centered Big Logo without "Digital Solutions for Business" Tagline */}
+            <div className="relative w-full flex items-center justify-center overflow-hidden">
               <img
                 src={logoImg}
                 alt="ZAVYX InfoTech"
                 className="w-full max-w-[280px] sm:max-w-md md:max-w-xl lg:max-w-2xl xl:max-w-3xl h-auto object-contain filter drop-shadow-xs"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = '/images/ZAVYX_logo.png';
+                  e.currentTarget.src = '/images/ZAVYX_logo_cropped.png';
                 }}
               />
             </div>

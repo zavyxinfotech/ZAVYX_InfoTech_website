@@ -191,7 +191,7 @@ export default function About() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-brand-600 shrink-0" />
-                  <span>Mon – Sat Service</span>
+                  <span>Mon – Fri Service</span>
                 </div>
               </div>
             </div>

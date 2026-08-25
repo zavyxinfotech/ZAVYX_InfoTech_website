@@ -43,8 +43,7 @@ export default function SEO({
         "Tuesday",
         "Wednesday",
         "Thursday",
-        "Friday",
-        "Saturday"
+        "Friday"
       ],
       "opens": "09:30",
       "closes": "19:00"
