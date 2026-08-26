@@ -193,22 +193,6 @@ export default function Home() {
                 </Link>
               </motion.div>
 
-              {/* Quick Capabilities Highlights Bar */}
-              <div className="pt-4 border-t border-slate-200/60 grid grid-cols-3 gap-2 max-w-lg text-xs text-slate-600">
-                <div className="flex items-center gap-1.5 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                  <span className="truncate">48H Web Delivery</span>
-                </div>
-                <div className="flex items-center gap-1.5 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-500 shrink-0" />
-                  <span className="truncate">Meta Cloud APIs</span>
-                </div>
-                <div className="flex items-center gap-1.5 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                  <span className="truncate">Custom ERP / AI</span>
-                </div>
-              </div>
-
             </div>
 
             {/* Right Column: Hero Services Circular Motion Showcase (5 cols on lg) */}

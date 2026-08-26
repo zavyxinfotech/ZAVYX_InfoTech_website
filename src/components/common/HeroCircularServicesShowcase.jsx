@@ -592,19 +592,6 @@ export default function HeroCircularServicesShowcase({ onServiceSelect }) {
 
       </div>
 
-      {/* Orbit Control Indicator & Interactive Tip */}
-      <div className="flex items-center justify-between w-full px-4 pt-3 text-[10px] sm:text-xs text-slate-500">
-        <div className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-          <span className="font-mono uppercase font-semibold text-slate-700">
-            {isPaused ? "ORBIT PAUSED (INSPECTING)" : "LIVE CIRCULAR ORBIT"}
-          </span>
-        </div>
-        <span className="text-slate-400 font-medium hidden sm:inline">
-          Hover to pause • Click node to focus
-        </span>
-      </div>
-
     </div>
   );
 }
