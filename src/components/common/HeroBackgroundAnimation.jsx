@@ -367,8 +367,8 @@ export default function HeroBackgroundAnimation() {
             <Zap className="w-4 h-4" />
           </div>
           <div className="text-left">
-            <p className="text-[11px] font-bold text-slate-800 leading-tight">48h Delivery</p>
-            <p className="text-[9px] text-slate-500 font-medium">Rapid Web Launch</p>
+            <p className="text-[11px] font-bold text-slate-800 leading-tight">Fast Delivery</p>
+            <p className="text-[9px] text-slate-500 font-medium">Modern Web Architecture</p>
           </div>
         </motion.div>
 

@@ -24,10 +24,9 @@ import {
   Award
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import FAQAccordion from '../components/common/FAQAccordion';
-import WebsiteRapidLaunchHighlight from '../components/common/WebsiteRapidLaunchHighlight';
 import InteractiveServiceCard from '../components/common/InteractiveServiceCard';
 import HeroBackgroundAnimation from '../components/common/HeroBackgroundAnimation';
+import HeroServicesWheel from '../components/common/HeroServicesWheel';
 import RobotServicesExplorer from '../components/common/RobotServicesExplorer';
 import CinematicServicesCarousel from '../components/common/CinematicServicesCarousel';
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
@@ -134,55 +133,89 @@ export default function Home() {
       />
 
       {/* ===================== HERO SECTION ===================== */}
-      <section className="relative pt-14 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+      <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
         {/* Industry-Standard Animated Background Suite */}
         <HeroBackgroundAnimation />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.15] font-display"
-            >
-              Build, Automate, and Scale with <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-600 bg-clip-text text-transparent">Smart Digital Solutions</span>
-            </motion.h1>
-
-            {/* Sub-headline */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-5 sm:mt-6 text-base sm:text-xl text-slate-600 max-w-2xl leading-relaxed"
-            >
-              {companyData.heroSubheadline}
-            </motion.p>
-
-            {/* Hero CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
-            >
-              <Link
-                to="/start-a-project"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35 transition-all duration-200 transform hover:-translate-y-0.5"
+            {/* Left Column: Main Headline, Value Prop & CTAs (7 cols on lg) */}
+            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+              
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] font-display"
               >
-                <span>Start a Project</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                Build, Automate, and Scale with{' '}
+                <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-600 bg-clip-text text-transparent">
+                  Smart Digital Solutions
+                </span>
+              </motion.h1>
 
-              <Link
-                to="/services"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-sm hover:shadow transition-all duration-200"
+              {/* Sub-headline */}
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               >
-                <span>Explore Services (9)</span>
-              </Link>
-            </motion.div>
+                {companyData.heroSubheadline}
+              </motion.p>
+
+              {/* Hero CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <Link
+                  to="/start-a-project"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35 transition-all duration-200 transform hover:-translate-y-0.5"
+                >
+                  <span>Start a Project</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <Link
+                  to="/services"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-sm hover:shadow transition-all duration-200"
+                >
+                  <span>Explore Services (9)</span>
+                </Link>
+              </motion.div>
+
+              {/* Capabilities Trust Badges */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-slate-600 font-medium"
+              >
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>48H Rapid Deployment</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
+                  <span>Zero Clunky Templates</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-purple-500 shrink-0" />
+                  <span>Transparent Milestones</span>
+                </div>
+              </motion.div>
+
+            </div>
+
+            {/* Right Column: Circular Rotary 3D Service Wheel with Technical Schematics (5 cols on lg) */}
+            <div className="lg:col-span-5 w-full flex items-center justify-center lg:justify-end pt-4 lg:pt-0">
+              <HeroServicesWheel />
+            </div>
 
           </div>
         </div>
@@ -191,10 +224,7 @@ export default function Home() {
       {/* ===================== AI ROBOT SERVICES EXPLORER TICKER (CONTINUOUS HORIZONTAL LOOP) ===================== */}
       <RobotServicesExplorer />
 
-      {/* ===================== SPOTLIGHT SERVICE HIGHLIGHT (48H WEB LAUNCH) ===================== */}
-      <section className="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <WebsiteRapidLaunchHighlight />
-      </section>
+     
 
       {/* ===================== SERVICES SHOWCASE (2 CARDS PER ROW ON MOBILE WITH 3D HOVER TEXT REVEAL) ===================== */}
       <section ref={servicesSectionRef} className="py-20 md:py-28 bg-slate-50/50">
@@ -364,7 +394,7 @@ export default function Home() {
 
                   <div className="pt-2 flex flex-wrap gap-2 text-xs text-slate-600">
                     <span className="px-3 py-1 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">
-                      ⚡ 48-Hour Web Launch
+                      ⚡ Fast Turnaround
                     </span>
                     <span className="px-3 py-1 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">
                       🔒 100% Owned Code

@@ -25,7 +25,7 @@
 
 ## 🛠️ Full-Spectrum Services (9 Core Capabilities)
 
-1. **Website Design & Development** — High-performance, conversion-engineered websites with 48h rapid launch.
+1. **Website Design & Development** — High-performance, conversion-engineered websites with rapid launch.
 2. **E-Commerce Development** — Omnichannel online stores with multi-gateway payments, inventory tracking, and 1-click checkout.
 3. **Custom CRM & ERP Solutions** — Enterprise management software for sales pipelines, inventory oversight, and financial ledgers.
 4. **WhatsApp API Solutions** — Verified Meta WhatsApp Business API integrations, interactive chatbots, and multi-agent shared inboxes.

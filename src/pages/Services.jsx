@@ -20,8 +20,8 @@ import {
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import FAQAccordion from '../components/common/FAQAccordion';
-import WebsiteRapidLaunchHighlight from '../components/common/WebsiteRapidLaunchHighlight';
 import InteractiveServiceCard from '../components/common/InteractiveServiceCard';
+import { Preview } from 'shaders/react';
 import { servicesData } from '../data/servicesData';
 import { companyData } from '../data/companyData';
 
@@ -62,12 +62,17 @@ export default function Services() {
         description="Explore ZAVYX InfoTech's 9 technology services: Web Development, E-Commerce, Custom CRM/ERP, WhatsApp API, AI Automation, Mobile Apps, and Cloud Solutions."
       />
 
-      {/* ===================== HERO SECTION ===================== */}
-      <section className="pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ===================== HERO SECTION WITH SHADERS ANIMATION ===================== */}
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+        {/* Shaders Background Canvas */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none opacity-40 mix-blend-multiply overflow-hidden">
+          <Preview shader="88048982-8901-4b57-94a0-c2f5873b16e3" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50/90 backdrop-blur-md border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
               <Layers className="w-3.5 h-3.5 text-brand-600" />
               <span>Full-Spectrum Digital Services</span>
             </div>
@@ -92,7 +97,7 @@ export default function Services() {
                   className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
                     selectedCategory === cat
                       ? 'bg-brand-600 text-white shadow-sm'
-                      : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                      : 'bg-white/90 backdrop-blur-sm border border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
                 >
                   {cat}
@@ -104,10 +109,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ===================== FEATURED SERVICE SPOTLIGHT (WEBSITES IN 48H) ===================== */}
-      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <WebsiteRapidLaunchHighlight />
-      </section>
+     
 
       {/* ===================== 9 SERVICES SHOWCASE GRID (2 CARDS PER ROW ON MOBILE) ===================== */}
       <section className="py-16 md:py-24 bg-white border-y border-slate-200/80">

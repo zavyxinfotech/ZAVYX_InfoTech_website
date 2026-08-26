@@ -9,7 +9,7 @@ export default function Preloader({ onComplete }) {
     const timer = setTimeout(() => {
       setIsVisible(false);
       if (onComplete) onComplete();
-    }, 2000);
+    }, 1800);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -19,12 +19,12 @@ export default function Preloader({ onComplete }) {
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#fafcff]"
+          exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white"
         >
-          <div className="w-48 h-48 sm:w-64 sm:h-64 flex items-center justify-center">
+          <div className="w-56 h-56 sm:w-72 sm:h-72 flex items-center justify-center">
             <DotLottieReact
-              src="https://lottie.host/fdb6ccf6-cd6d-4e74-bea0-02fda3c46091/hatePj1PnM.lottie"
+              src="https://lottie.host/94d667e7-e1c7-46dd-95f2-79a76dce095d/23MX5W4CpY.lottie"
               loop
               autoplay
             />

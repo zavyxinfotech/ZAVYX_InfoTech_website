@@ -24,7 +24,6 @@ import {
   Cloud
 } from 'lucide-react';
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
-import WebsiteRapidLaunchHighlight from '../components/common/WebsiteRapidLaunchHighlight';
 import SEO from '../components/common/SEO';
 import FAQAccordion from '../components/common/FAQAccordion';
 import { servicesData } from '../data/servicesData';
@@ -164,13 +163,7 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      {/* ===================== 48H RAPID LAUNCH SPOTLIGHT FOR WEB DEV ===================== */}
-      {service.slug === 'website-design-development' && (
-        <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <WebsiteRapidLaunchHighlight />
-        </section>
-      )}
-
+     
       {/* ===================== WHAT'S INCLUDED (6 MODULAR TILES) ===================== */}
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

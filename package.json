@@ -17,6 +17,7 @@
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.26.0",
+    "shaders": "^3.1.463",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {

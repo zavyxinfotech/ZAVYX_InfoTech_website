@@ -8,27 +8,42 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0284c7', // Primary Brand Blue
-          600: '#0369a1',
-          700: '#075985',
-          800: '#0c4a6e',
-          900: '#082f49',
-          950: '#031726',
+          50: '#f0f7ff',
+          100: '#e0effe',
+          200: '#bae0fd',
+          300: '#7cc5fb',
+          400: '#38a5f8',
+          500: '#0070F3', // ZAVYX Electric Blue
+          600: '#0052cc', // Primary Action Blue
+          700: '#003d99',
+          800: '#002966',
+          900: '#000B58', // ZAVYX Deep Navy
+          950: '#000638',
+        },
+        zavyx: {
+          navy: '#000B58',
+          blue: '#0070F3',
+          cyan: '#00A3E0',
+          green: '#00A843',
+          pink: '#E6007A',
+          yellow: '#F5B800',
         },
         accent: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6', // Teal / Cyan Accent
-          600: '#0d9488',
-          700: '#0f766e',
+          50: '#fdf2f8',
+          100: '#fce7f3',
+          200: '#fbcfe8',
+          300: '#f9a8d4',
+          400: '#f472b6',
+          500: '#E6007A', // ZAVYX Magenta Pink
+          600: '#db2777',
+          700: '#be185d',
+        },
+        success: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          500: '#00A843', // ZAVYX Brand Green
+          600: '#16a34a',
+          700: '#15803d',
         },
         surface: {
           50: '#f8fafc',
@@ -40,7 +55,7 @@ export default {
           600: '#475569',
           700: '#334155',
           800: '#1e293b',
-          900: '#0f172a',
+          900: '#000B58',
         }
       },
       fontFamily: {
