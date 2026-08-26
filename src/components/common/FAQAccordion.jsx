@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 export default function FAQAccordion({ items, defaultOpenIndex = 0 }) {
@@ -14,13 +13,9 @@ export default function FAQAccordion({ items, defaultOpenIndex = 0 }) {
       {items.map((item, idx) => {
         const isOpen = openIndex === idx;
         return (
-          <motion.div
+          <div
             key={idx}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: idx * 0.05 }}
-            className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+            className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
               isOpen
                 ? 'bg-white border-brand-300 shadow-md shadow-brand-500/5'
                 : 'bg-white/90 hover:bg-white border-slate-200/90 hover:border-slate-300 shadow-xs'
@@ -39,34 +34,31 @@ export default function FAQAccordion({ items, defaultOpenIndex = 0 }) {
                 </span>
                 <span>{item.question}</span>
               </span>
-              <motion.div
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className={`p-1 sm:p-1.5 rounded-full transition-colors shrink-0 mt-0.5 sm:mt-0 ${
-                  isOpen ? 'bg-brand-50 text-brand-600' : 'bg-slate-100 text-slate-400'
+              <div
+                className={`p-1 sm:p-1.5 rounded-full transition-all duration-300 shrink-0 mt-0.5 sm:mt-0 ${
+                  isOpen ? 'bg-brand-50 text-brand-600 rotate-180' : 'bg-slate-100 text-slate-400 rotate-0'
                 }`}
               >
                 <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.div>
+              </div>
             </button>
 
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeInOut' }}
-                >
-                  <div className="px-4 pb-4 pt-1 sm:px-5 sm:pb-5 sm:pt-1 text-slate-600 leading-relaxed border-t border-slate-100 text-xs sm:text-sm md:text-base">
-                    {item.answer}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            {/* GPU Native Grid Transition Accordion */}
+            <div
+              className={`grid transition-all duration-300 ease-in-out ${
+                isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="px-4 pb-4 pt-1 sm:px-5 sm:pb-5 sm:pt-1 text-slate-600 leading-relaxed border-t border-slate-100 text-xs sm:text-sm md:text-base">
+                  {item.answer}
+                </div>
+              </div>
+            </div>
+          </div>
         );
       })}
     </div>
   );
 }
+

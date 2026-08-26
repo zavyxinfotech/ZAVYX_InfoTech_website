@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -75,3 +77,35 @@
 .animate-autoscroll {
   animation: autoscroll 25s linear infinite;
 }
+
+/* GPU-composited CSS Orbit Animation Suite */
+@keyframes orbit-cw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.animate-orbit-cw {
+  animation: orbit-cw 50s linear infinite;
+}
+
+.animate-orbit-ccw {
+  animation: orbit-ccw 50s linear infinite;
+}
+
+.paused-orbit {
+  animation-play-state: paused !important;
+}
+

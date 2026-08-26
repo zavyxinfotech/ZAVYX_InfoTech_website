@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import { companyData } from '../../data/companyData';
-import logoImg from '../../assets/logo/logo.png';
+import logoImg from '../../assets/logo/logo.webp';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,7 +58,7 @@ export default function Navbar() {
                 className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = '/images/ZAVYX_logo.png';
+                  e.currentTarget.src = '/images/ZAVYX_logo.webp';
                 }}
               />
             </Link>

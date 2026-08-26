@@ -4,13 +4,13 @@ import { Users, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import { companyData } from '../../data/companyData';
 
 // Team member image imports
-import founderImg from '../../assets/images/team/Founder.jpeg';
-import directorImg from '../../assets/images/team/Director.jpeg';
-import relationshipManagerImg from '../../assets/images/team/Relationship_Manager.jpeg';
-import dataAnalystImg from '../../assets/images/team/Data_Analyst.png';
-import uiUxImg from '../../assets/images/team/UI_Ux_Designer.jpeg';
-import hrImg from '../../assets/images/team/HR.jpeg';
-import developerImg from '../../assets/images/team/developer_developer.jpeg';
+import founderImg from '../../assets/images/team/Founder.webp';
+import directorImg from '../../assets/images/team/Director.webp';
+import relationshipManagerImg from '../../assets/images/team/Relationship_Manager.webp';
+import dataAnalystImg from '../../assets/images/team/Data_Analyst.webp';
+import uiUxImg from '../../assets/images/team/UI_Ux_Designer.webp';
+import hrImg from '../../assets/images/team/HR.webp';
+import developerImg from '../../assets/images/team/developer_developer.webp';
 
 export default function TeamAutoScroll() {
   const imageMap = {

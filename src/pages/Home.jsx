@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   Sparkles, 
-  CheckCircle2, 
   Code2, 
   ShoppingBag, 
   Database, 
@@ -14,14 +13,7 @@ import {
   TrendingUp, 
   Palette, 
   Cloud, 
-  Shield, 
-  Layers, 
-  Zap, 
-  PhoneCall, 
-  ChevronRight,
-  Target,
-  Users,
-  Award
+  Layers
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import InteractiveServiceCard from '../components/common/InteractiveServiceCard';
@@ -33,98 +25,10 @@ import StructuredMilestonesSDLC from '../components/common/StructuredMilestonesS
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
 import { companyData } from '../data/companyData';
 import { servicesData } from '../data/servicesData';
+import ScrollReveal from '../components/common/ScrollReveal';
 
 export default function Home() {
-  const servicesSectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: servicesSectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Parallax upward motion when scrolling past the section
-  const scrollCardsY = useTransform(scrollYProgress, [0.35, 1], ['0px', '-35px']);
-
-  const iconMap = {
-    'website-design-development': Code2,
-    'ecommerce-development': ShoppingBag,
-    'crm-erp-solutions': Database,
-    'whatsapp-api-solutions': MessageSquare,
-    'ai-automation-solutions': Bot,
-    'mobile-app-development': Smartphone,
-    'digital-marketing': TrendingUp,
-    'branding-creative-design': Palette,
-    'cloud-hosting-solutions': Cloud,
-  };
-
   const topFaqs = companyData.faqs.slice(0, 4);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const servicesContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.15,
-      },
-    },
-  };
-
-  // 1st Card: Websites & Web Apps zooms in first, then moves towards backside, and settles in wave motion
-  const firstCardVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 1.25, 
-      y: 40,
-    },
-    visible: { 
-      opacity: 1, 
-      scale: [1.25, 0.94, 1.02, 1], 
-      y: [40, -8, 2, 0],
-      transition: { 
-        duration: 0.9, 
-        times: [0, 0.45, 0.75, 1],
-        ease: 'easeOut',
-      } 
-    },
-  };
-
-  // Subsequent Cards: Wave motion with smooth cascading spring
-  const waveCardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 45, 
-      scale: 0.9,
-    },
-    visible: { 
-      opacity: 1, 
-      y: [45, -6, 0], 
-      scale: [0.9, 1.02, 1],
-      transition: { 
-        duration: 0.75, 
-        ease: 'easeOut',
-      } 
-    },
-  };
 
   return (
     <div className="subtle-mesh-bg">
@@ -208,7 +112,7 @@ export default function Home() {
       <RobotServicesExplorer />
 
       {/* ===================== SERVICES SHOWCASE (2 CARDS PER ROW ON MOBILE WITH 3D HOVER TEXT REVEAL) ===================== */}
-      <section ref={servicesSectionRef} className="py-20 md:py-28 bg-slate-50/50">
+      <section className="py-20 md:py-28 bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
@@ -233,30 +137,20 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Cards Grid with Wave Motion & Parallax */}
-          <motion.div
-            variants={servicesContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            style={{ y: scrollCardsY }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
-          >
-            {servicesData.map((service, idx) => {
-              const isFirstCard = idx === 0;
-              const cardVariant = isFirstCard ? firstCardVariants : waveCardVariants;
-
-              return (
-                <motion.div
-                  key={service.id}
-                  variants={cardVariant}
-                  className="w-full"
-                >
-                  <InteractiveServiceCard service={service} index={idx} />
-                </motion.div>
-              );
-            })}
-          </motion.div>
+          {/* Cards Grid with GPU-accelerated ScrollReveal animations */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+            {servicesData.map((service, idx) => (
+              <ScrollReveal
+                key={service.id}
+                variant="fade-up"
+                duration={350}
+                delay={idx * 75}
+                className="w-full"
+              >
+                <InteractiveServiceCard service={service} index={idx} />
+              </ScrollReveal>
+            ))}
+          </div>
 
         </div>
       </section>
@@ -271,7 +165,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
             
             {/* Left Column: Exactly 4 FAQs (6 cols on lg) */}
-            <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+            <ScrollReveal variant="fade-right" duration={350} className="lg:col-span-6 flex flex-col justify-between space-y-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
                   <span>Got Questions?</span>
@@ -298,10 +192,10 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Right Column: "Ready to Upgrade" CTA Card (6 cols on lg, matching height) */}
-            <div className="lg:col-span-6">
+            <ScrollReveal variant="fade-left" duration={350} className="lg:col-span-6">
               <div className="h-full flex flex-col justify-between p-7 sm:p-10 rounded-3xl bg-gradient-to-br from-brand-50/80 via-white to-accent-50/50 border border-brand-200/90 shadow-xl shadow-brand-500/5 space-y-6">
                 
                 <div className="space-y-4">
@@ -358,7 +252,7 @@ export default function Home() {
                 </div>
 
               </div>
-            </div>
+            </ScrollReveal>
 
           </div>
 
