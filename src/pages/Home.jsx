@@ -24,6 +24,7 @@ import {
   Award
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
+import FAQAccordion from '../components/common/FAQAccordion';
 import InteractiveServiceCard from '../components/common/InteractiveServiceCard';
 import HeroBackgroundAnimation from '../components/common/HeroBackgroundAnimation';
 import HeroServicesWheel from '../components/common/HeroServicesWheel';
