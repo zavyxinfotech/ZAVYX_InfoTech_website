@@ -18,7 +18,6 @@ import {
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import TeamAutoScroll from '../components/common/TeamAutoScroll';
-import { Preview } from 'shaders/react';
 import { companyData } from '../data/companyData';
 
 export default function About() {
@@ -37,17 +36,12 @@ export default function About() {
         description="Explore ZAVYX InfoTech's mission and vision — empowering modern businesses with intelligent software, automated workflows, and transformative digital systems."
       />
 
-      {/* ===================== HERO SECTION WITH SHADERS ANIMATION ===================== */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
-        {/* Shaders Background Canvas */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none opacity-40 mix-blend-multiply overflow-hidden">
-          <Preview shader="88048982-8901-4b57-94a0-c2f5873b16e3" className="w-full h-full object-cover" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* ===================== HERO SECTION ===================== */}
+      <section className="pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50/90 backdrop-blur-md border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-4">
               <Compass className="w-3.5 h-3.5 text-brand-600" />
               <span>About ZAVYX InfoTech</span>
             </div>

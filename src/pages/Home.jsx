@@ -24,12 +24,10 @@ import {
   Award
 } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import FAQAccordion from '../components/common/FAQAccordion';
 import InteractiveServiceCard from '../components/common/InteractiveServiceCard';
 import HeroBackgroundAnimation from '../components/common/HeroBackgroundAnimation';
-import HeroServicesWheel from '../components/common/HeroServicesWheel';
 import RobotServicesExplorer from '../components/common/RobotServicesExplorer';
-import CinematicServicesCarousel from '../components/common/CinematicServicesCarousel';
+import HeroCircularServicesShowcase from '../components/common/HeroCircularServicesShowcase';
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
 import { companyData } from '../data/companyData';
 import { servicesData } from '../data/servicesData';
@@ -55,8 +53,6 @@ export default function Home() {
     'branding-creative-design': Palette,
     'cloud-hosting-solutions': Cloud,
   };
-
-  const topFaqs = companyData.faqs.slice(0, 4);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -139,11 +135,17 @@ export default function Home() {
         <HeroBackgroundAnimation />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-            {/* Left Column: Main Headline, Value Prop & CTAs (7 cols on lg) */}
-            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+            {/* Left Column: Hero Typography & CTAs (7 cols on lg) */}
+            <div className="lg:col-span-7 space-y-6 text-left">
               
+              {/* Brand Tagline Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50/90 border border-brand-200/80 text-brand-700 text-xs font-bold uppercase tracking-wider shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-brand-600" />
+                <span>Technology Partner for Modern Enterprises</span>
+              </div>
+
               {/* Main Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 15 }}
@@ -151,10 +153,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] font-display"
               >
-                Build, Automate, and Scale with{' '}
-                <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-600 bg-clip-text text-transparent">
-                  Smart Digital Solutions
-                </span>
+                Build, Automate, and Scale with <span className="bg-gradient-to-r from-brand-600 via-brand-500 to-accent-600 bg-clip-text text-transparent">Smart Digital Solutions</span>
               </motion.h1>
 
               {/* Sub-headline */}
@@ -162,7 +161,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed"
               >
                 {companyData.heroSubheadline}
               </motion.p>
@@ -172,11 +171,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+                className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto"
               >
                 <Link
                   to="/start-a-project"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35 transition-all duration-200 transform hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/35 transition-all duration-200 transform hover:-translate-y-0.5"
                 >
                   <span>Start a Project</span>
                   <ArrowRight className="w-4 h-4" />
@@ -184,38 +183,33 @@ export default function Home() {
 
                 <Link
                   to="/services"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-sm hover:shadow transition-all duration-200"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-xs hover:shadow transition-all duration-200"
                 >
                   <span>Explore Services (9)</span>
                 </Link>
               </motion.div>
 
-              {/* Capabilities Trust Badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-slate-600 font-medium"
-              >
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>48H Rapid Deployment</span>
+              {/* Quick Capabilities Highlights Bar */}
+              <div className="pt-4 border-t border-slate-200/60 grid grid-cols-3 gap-2 max-w-lg text-xs text-slate-600">
+                <div className="flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span className="truncate">48H Web Delivery</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
-                  <span>Zero Clunky Templates</span>
+                <div className="flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-brand-500 shrink-0" />
+                  <span className="truncate">Meta Cloud APIs</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-500 shrink-0" />
-                  <span>Transparent Milestones</span>
+                <div className="flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                  <span className="truncate">Custom ERP / AI</span>
                 </div>
-              </motion.div>
+              </div>
 
             </div>
 
-            {/* Right Column: Circular Rotary 3D Service Wheel with Technical Schematics (5 cols on lg) */}
-            <div className="lg:col-span-5 w-full flex items-center justify-center lg:justify-end pt-4 lg:pt-0">
-              <HeroServicesWheel />
+            {/* Right Column: Hero Services Circular Motion Showcase (5 cols on lg) */}
+            <div className="lg:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0">
+              <HeroCircularServicesShowcase />
             </div>
 
           </div>
@@ -224,8 +218,6 @@ export default function Home() {
 
       {/* ===================== AI ROBOT SERVICES EXPLORER TICKER (CONTINUOUS HORIZONTAL LOOP) ===================== */}
       <RobotServicesExplorer />
-
-     
 
       {/* ===================== SERVICES SHOWCASE (2 CARDS PER ROW ON MOBILE WITH 3D HOVER TEXT REVEAL) ===================== */}
       <section ref={servicesSectionRef} className="py-20 md:py-28 bg-slate-50/50">
@@ -238,7 +230,7 @@ export default function Home() {
                 <span>Our Core Capabilities</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
-                Everything You Need to Build, Automate & Scale
+                Everything You Need to Build, Automate &amp; Scale
               </h2>
               <p className="mt-3 text-slate-600 max-w-xl text-base sm:text-lg">
                 Hover on any card to view detailed specifications with 3D folding animations.
@@ -253,40 +245,55 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Interactive 2-Cards-Per-Row Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 lg:gap-8">
-            {servicesData.map((service) => {
-              const IconComponent = iconMap[service.slug] || Code2;
+          {/* Cards Grid with Wave Motion & Parallax */}
+          <motion.div
+            variants={servicesContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            style={{ y: scrollCardsY }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
+          >
+            {servicesData.map((service, idx) => {
+              const isFirstCard = idx === 0;
+              const cardVariant = isFirstCard ? firstCardVariants : waveCardVariants;
 
               return (
-                <div key={service.id}>
-                  <InteractiveServiceCard
-                    service={service}
-                    IconComponent={IconComponent}
-                  />
-                </div>
+                <motion.div
+                  key={service.id}
+                  variants={cardVariant}
+                  className="w-full"
+                >
+                  <InteractiveServiceCard service={service} index={idx} />
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
+      {/* ===================== RAPID LAUNCH HIGHLIGHT (INTERACTIVE 48H DEMO) ===================== */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <WebsiteRapidLaunchHighlight />
+        </div>
+      </section>
 
-      {/* ===================== PROCESS / APPROACH TIMELINE ===================== */}
-      <section className="py-20 md:py-28 bg-slate-50/60 border-t border-slate-200/80">
+      {/* ===================== ENGAGEMENT WORKFLOW (STEP 1 TO 4) ===================== */}
+      <section className="py-20 md:py-28 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="max-w-3xl mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3">
-              <Zap className="w-3.5 h-3.5" />
-              <span>How We Deliver</span>
+              <Zap className="w-3.5 h-3.5 text-brand-600" />
+              <span>How We Partner With You</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
-              A Transparent, 4-Stage Execution Methodology
+              Structured Milestones From Discovery to Scaling
             </h2>
             <p className="mt-3 text-slate-600 text-base sm:text-lg">
-              From requirement discovery to production deployment and long-term scale.
+              Transparent workflows, dedicated engineering milestones, and continuous technical evolution.
             </p>
           </div>
 
@@ -294,28 +301,28 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "Discover & Strategize",
-                desc: "We analyze your business workflow, target audience, and architecture requirements to draft a clear scope."
+                title: "Discovery & Strategy",
+                desc: "We analyze your operations, tech debt, and strategic objectives to engineer a clear execution blueprint.",
               },
               {
                 step: "02",
-                title: "Design & Prototype",
-                desc: "Crafting intuitive UX wireframes, system diagrams, and interactive prototypes for full alignment before coding."
+                title: "UI/UX & Prototyping",
+                desc: "Interactive wireframes and design systems crafted for high conversion rates and effortless usability.",
               },
               {
                 step: "03",
-                title: "Build & Integrate",
-                desc: "Developing clean, modular code with rigorous QA testing, automated APIs, and performance optimization."
+                title: "Agile Development",
+                desc: "Clean, modular code built with modern stacks, rigorous testing, and weekly milestone demos.",
               },
               {
                 step: "04",
-                title: "Launch & Scale",
-                desc: "Zero-downtime deployment, complete staff training, automated backups, and continuous partnership support."
-              }
+                title: "Launch & Support",
+                desc: "Zero-downtime deployment, staff onboarding, and continuous proactive system optimization.",
+              },
             ].map((st, i) => (
               <div
                 key={i}
-                className="relative p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-200 transition-all flex flex-col justify-between"
+                className="p-6 sm:p-7 rounded-3xl bg-slate-50/80 border border-slate-200/80 hover:bg-white hover:border-brand-200 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="text-3xl font-extrabold text-brand-500 font-display mb-3">
@@ -339,104 +346,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===================== FAQ & CTA SIDE-BY-SIDE SECTION ===================== */}
-      <section className="py-20 md:py-28 bg-white border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+      {/* ===================== CONVERSION CTA BANNER ===================== */}
+      <section className="py-20 bg-gradient-to-b from-slate-50 to-brand-50/50 border-t border-slate-200/80">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="p-8 sm:p-14 rounded-3xl bg-white border border-brand-200/80 shadow-xl shadow-brand-500/5 space-y-6">
             
-            {/* Left Column: Exactly 4 FAQs (6 cols on lg) */}
-            <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
-                  <span>Got Questions?</span>
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-display">
-                  Frequently Asked Questions
-                </h2>
-                <p className="mt-2 text-slate-600 text-sm sm:text-base">
-                  Quick answers on how we build, automate, and partner with growing businesses.
-                </p>
-              </div>
-
-              {/* 4 Interactive FAQ items */}
-              <div className="pt-2">
-                <FAQAccordion items={topFaqs} defaultOpenIndex={0} />
-              </div>
-
-              <div className="pt-2">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-600 hover:text-brand-700"
-                >
-                  <span>Have a question not listed here? Contact us directly</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-4 h-4 text-brand-500" />
+              <span>Let's Discuss Your Project</span>
             </div>
 
-            {/* Right Column: "Ready to Upgrade" CTA Card (6 cols on lg, matching height) */}
-            <div className="lg:col-span-6">
-              <div className="h-full flex flex-col justify-between p-7 sm:p-10 rounded-3xl bg-gradient-to-br from-brand-50/80 via-white to-accent-50/50 border border-brand-200/90 shadow-xl shadow-brand-500/5 space-y-6">
-                
-                <div className="space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 text-brand-800 text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-4 h-4 text-brand-600" />
-                    <span>Let's Discuss Your Project</span>
-                  </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
+              Ready to Upgrade Your Digital Infrastructure?
+            </h2>
 
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight font-display leading-tight">
-                    Ready to Upgrade Your Digital Infrastructure?
-                  </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+              Whether you need a custom high-performance website, automated WhatsApp workflows, or enterprise CRM/ERP software, we are ready to partner with you.
+            </p>
 
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Whether you need a custom high-performance website, automated WhatsApp workflows, or enterprise CRM/ERP software, our team at Texvalley Erode is ready to engineer your solution.
-                  </p>
-
-                  <div className="pt-2 flex flex-wrap gap-2 text-xs text-slate-600">
-                    <span className="px-3 py-1 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">
-                      ⚡ Fast Turnaround
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">
-                      🔒 100% Owned Code
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">
-                      🤝 Direct Tech Support
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-4 pt-4 border-t border-slate-200/60">
-                  <div className="flex flex-col sm:flex-row items-center gap-3">
-                    <Link
-                      to="/start-a-project"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm sm:text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-500/20 transition-all hover:scale-105"
-                    >
-                      <span>Start a Project</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-
-                    <a
-                      href={companyData.contact.whatsappLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm sm:text-base font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all"
-                    >
-                      <WhatsAppIcon className="w-4 h-4 fill-[#25D366]" />
-                      <span>WhatsApp Us</span>
-                    </a>
-                  </div>
-
-                  <p className="text-[11px] text-slate-500">
-                    Office at Texvalley, Erode &bull; Fast turnaround &bull; Direct technical consultation
-                  </p>
-                </div>
-
-              </div>
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/start-a-project"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 transition-all hover:scale-105"
+              >
+                <span>Start a Project</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href={companyData.contact.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full text-base font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all"
+              >
+                <WhatsAppIcon className="w-5 h-5 fill-[#25D366]" />
+                <span>Chat on WhatsApp</span>
+              </a>
             </div>
 
           </div>
-
         </div>
       </section>
 

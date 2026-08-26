@@ -23,7 +23,7 @@ import { companyData } from '../data/companyData';
 export default function StartProject() {
   const [selectedServices, setSelectedServices] = useState(['website-design-development']);
   const [selectedBudget, setSelectedBudget] = useState('₹50,000 – ₹1,50,000');
-  const [selectedTimeline, setSelectedTimeline] = useState('1–2 Weeks');
+  const [selectedTimeline, setSelectedTimeline] = useState('2 days');
   
   const [formData, setFormData] = useState({
     name: '',
@@ -46,7 +46,7 @@ export default function StartProject() {
   ];
 
   const timelineOptions = [
-    '1–2 Weeks',
+    '2 Days (Rapid Launch)',
     '2–4 Weeks',
     '1–2 Months',
     'Flexible / Milestone-Based'

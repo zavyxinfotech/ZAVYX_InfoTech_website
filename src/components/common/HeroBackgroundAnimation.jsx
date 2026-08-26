@@ -368,7 +368,7 @@ export default function HeroBackgroundAnimation() {
           </div>
           <div className="text-left">
             <p className="text-[11px] font-bold text-slate-800 leading-tight">Fast Delivery</p>
-            <p className="text-[9px] text-slate-500 font-medium">Modern Web Architecture</p>
+            <p className="text-[9px] text-slate-500 font-medium">Rapid Web Launch</p>
           </div>
         </motion.div>
 
