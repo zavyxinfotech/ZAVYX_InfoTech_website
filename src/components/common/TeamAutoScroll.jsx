@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, CheckCircle2 } from 'lucide-react';
+import { Users, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import { companyData } from '../../data/companyData';
 
 // Team member image imports
@@ -28,88 +28,102 @@ export default function TeamAutoScroll() {
     ...member,
     image: imageMap[member.name] || null,
   }));
-  
-  // Duplicate for seamless infinite horizontal loop
-  const duplicatedTeam = [...team, ...team, ...team];
 
   return (
-    <div className="py-20 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3">
+    <section className="py-20 md:py-28 bg-slate-50/70 border-t border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3.5">
             <Users className="w-3.5 h-3.5 text-brand-600" />
-            <span>Leadership & Engineering</span>
+            <span>Leadership &amp; Core Team</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
             Meet the Builders Behind ZAVYX
           </h2>
-          <p className="mt-3 text-slate-600 text-base sm:text-lg">
-            A specialized team of leaders, analysts, UI/UX designers, developers, and managers dedicated to your digital growth.
+          <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            A dedicated multidisciplinary team of founders, analysts, designers, and software engineers working together to elevate your digital presence.
           </p>
         </div>
-      </div>
 
-      {/* Autoscrolling Square Cards Stream */}
-      <div className="relative w-full py-4 group">
-        
-        {/* Left & Right Fade Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-
-        {/* Autoscrolling Track with Square Cards */}
-        <div className="flex gap-5 sm:gap-6 w-max animate-autoscroll group-hover:[animation-play-state:paused]">
-          {duplicatedTeam.map((member, idx) => (
-            <div
-              key={`${member.name}-${idx}`}
-              className="w-60 h-64 sm:w-68 sm:h-72 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-brand-400 hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6 flex flex-col items-center justify-center text-center shrink-0 select-none cursor-default"
+        {/* All Team Members in One Screen - Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {team.map((member, idx) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-brand-300 hover:-translate-y-1 transition-all duration-300 p-6 flex flex-col items-center text-center justify-between group"
             >
-              {/* Member Photo Frame */}
-              <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md ring-4 ring-slate-100 border border-slate-200 mb-3 shrink-0 bg-slate-100 flex items-center justify-center">
-                {member.image ? (
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className={`w-full h-full bg-gradient-to-br ${member.accent} text-white font-extrabold font-display text-base sm:text-lg flex items-center justify-center`}>
-                    {member.avatarText}
-                  </div>
-                )}
-              </div>
+              <div className="flex flex-col items-center w-full">
+                {/* Member Photo */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden shadow-md ring-4 ring-slate-100 border border-slate-200 mb-4 shrink-0 bg-slate-100 flex items-center justify-center group-hover:ring-brand-100 transition-all duration-300">
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${member.accent} text-white font-extrabold font-display text-xl flex items-center justify-center`}>
+                      {member.avatarText}
+                    </div>
+                  )}
 
-              {/* Name & Active Indicator */}
-              <div className="flex items-center justify-center gap-1.5">
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 font-display">
+                  {/* Active Status Dot */}
+                  <span className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white shadow-xs"></span>
+                </div>
+
+                {/* Name */}
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display">
                   {member.name}
                 </h3>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-              </div>
-              
-              {/* Role */}
-              <p className="text-xs font-semibold text-brand-600 mt-1 line-clamp-1">
-                {member.role}
-              </p>
+                
+                {/* Role Badge */}
+                <span className="inline-block mt-1 px-3 py-0.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold">
+                  {member.role}
+                </span>
 
-              {/* Focus / Description */}
-              <p className="text-[11px] sm:text-xs text-slate-500 mt-2 leading-relaxed line-clamp-2">
-                {member.focus}
-              </p>
-            </div>
+                {/* Focus / Description */}
+                <p className="text-xs text-slate-600 mt-3 leading-relaxed">
+                  {member.focus}
+                </p>
+              </div>
+
+              {/* Skills Tags */}
+              {member.skills && member.skills.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-slate-100 w-full flex flex-wrap items-center justify-center gap-1.5">
+                  {member.skills.slice(0, 3).map((skill, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-600"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
           ))}
         </div>
 
-      </div>
+        {/* Bottom Trust Guarantee Strip */}
+        <div className="mt-12 pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
+          <span className="flex items-center gap-2 text-slate-700 font-semibold">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            <span>Direct In-House Team &bull; 7 Dedicated Professionals</span>
+          </span>
+          <span className="flex items-center gap-1.5 text-brand-600 font-semibold">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Texvalley Headquarters, Erode, Tamil Nadu</span>
+          </span>
+        </div>
 
-      {/* Bottom Sub-text */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 flex items-center justify-end text-xs text-slate-500">
-        <span className="flex items-center gap-1.5 text-brand-600 font-semibold">
-          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-          <span>Direct Access to Leadership &amp; Engineering &bull; 7 Dedicated Professionals</span>
-        </span>
       </div>
-
-    </div>
+    </section>
   );
 }
