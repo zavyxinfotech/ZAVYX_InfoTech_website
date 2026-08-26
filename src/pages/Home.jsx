@@ -26,6 +26,9 @@ import WhatsAppIcon from '../components/common/WhatsAppIcon';
 import { companyData } from '../data/companyData';
 import { servicesData } from '../data/servicesData';
 import ScrollReveal from '../components/common/ScrollReveal';
+import SpeedComparison from '../components/common/SpeedComparison';
+import IndustryVerticals from '../components/common/IndustryVerticals';
+import TrustPillars from '../components/common/TrustPillars';
 
 export default function Home() {
   const topFaqs = companyData.faqs.slice(0, 4);
@@ -38,7 +41,7 @@ export default function Home() {
       />
 
       {/* ===================== HERO SECTION ===================== */}
-      <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
         {/* Industry-Standard Animated Background Suite */}
         <HeroBackgroundAnimation />
 
@@ -155,8 +158,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===================== SPEED & PERFORMANCE AUDIT COMPARISON ===================== */}
+      <SpeedComparison />
+
       {/* ===================== SDLC ENGINEERING WORKFLOW LIFECYCLE ===================== */}
       <StructuredMilestonesSDLC />
+
+      {/* ===================== INDUSTRY VERTICALS CLUSTERS ===================== */}
+      <IndustryVerticals />
+
+      {/* ===================== TRUST PILLARS BENTO GRID ===================== */}
+      <TrustPillars />
 
       {/* ===================== FAQ & CTA SIDE-BY-SIDE SECTION ===================== */}
       <section className="py-20 md:py-28 bg-white border-t border-slate-200/80">

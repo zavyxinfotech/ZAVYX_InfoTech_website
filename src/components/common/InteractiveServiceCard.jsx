@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { 
+  ArrowRight,
+  Code2, 
+  ShoppingBag, 
+  Database, 
+  MessageSquare, 
+  Bot, 
+  Smartphone, 
+  TrendingUp, 
+  Palette, 
+  Cloud 
+} from 'lucide-react';
+
+const iconMap = {
+  'website-design-development': Code2,
+  'ecommerce-development': ShoppingBag,
+  'crm-erp-solutions': Database,
+  'whatsapp-api-solutions': MessageSquare,
+  'ai-automation-solutions': Bot,
+  'mobile-app-development': Smartphone,
+  'digital-marketing': TrendingUp,
+  'branding-creative-design': Palette,
+  'cloud-hosting-solutions': Cloud,
+};
 
 export default function InteractiveServiceCard({ service, IconComponent }) {
   const [isHovered, setIsHovered] = useState(false);
+  const Icon = IconComponent || iconMap[service.id] || Code2;
 
   // Staggered word animation variants for the description text
   const containerVariants = {
@@ -50,7 +74,7 @@ export default function InteractiveServiceCard({ service, IconComponent }) {
       <div className="p-2.5 sm:p-3.5 md:p-4 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between gap-1.5 sm:gap-2">
         <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
           <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-brand-50 border border-brand-100 text-brand-600 flex items-center justify-center shrink-0 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
-            {IconComponent && <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />}
+            <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
           </div>
           <h3 className="text-xs sm:text-sm md:text-base font-bold text-slate-900 truncate font-display group-hover:text-brand-600 transition-colors">
             {service.shortTitle}
