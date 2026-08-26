@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Compass, 
   FileText, 
@@ -7,404 +7,434 @@ import {
   Code2, 
   ShieldCheck, 
   Rocket, 
-  TrendingUp, 
-  CheckCircle2, 
-  Sparkles, 
-  ArrowRight,
-  Zap,
-  Layers,
-  Terminal,
-  Activity
+  TrendingUp,
+  Sparkles,
+  Zap
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import logoImg from '../../assets/logo/logo.png';
 
 export default function StructuredMilestonesSDLC() {
-  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [hoveredStage, setHoveredStage] = useState(null);
 
-  const sdlcStages = [
+  const leftStages = [
     {
       number: "01",
-      title: "Discovery & Planning",
-      shortTitle: "Discovery",
-      badge: "xStrategy",
-      tagline: "Scope & Objectives",
-      description: "Understand the business problem, user personas, technical scope, timeline, and project milestones.",
+      name: "Discovery",
+      pill: "xDiscovery",
       icon: Compass,
-      color: "from-sky-500 to-blue-600",
-      pillColor: "bg-sky-500 text-white",
-      borderColor: "border-sky-300",
-      accentBg: "bg-sky-50/80 text-sky-700",
-      pathColor: "#0284c7"
+      pillBg: "bg-[#9333ea] text-white shadow-purple-500/20",
+      nodeColor: "border-purple-400 text-purple-600",
+      pathColor: "#a855f7",
     },
     {
       number: "02",
-      title: "Requirements Analysis",
-      shortTitle: "Requirements",
-      badge: "xSpecs",
-      tagline: "Functional Blueprint",
-      description: "Translate business requirements into functional, technical specifications and structured user flows.",
+      name: "Requirements",
+      pill: "xRequirements",
       icon: FileText,
-      color: "from-indigo-500 to-violet-600",
-      pillColor: "bg-indigo-600 text-white",
-      borderColor: "border-indigo-300",
-      accentBg: "bg-indigo-50/80 text-indigo-700",
-      pathColor: "#4f46e5"
+      pillBg: "bg-[#059669] text-white shadow-emerald-500/20",
+      nodeColor: "border-emerald-400 text-emerald-600",
+      pathColor: "#10b981",
     },
     {
       number: "03",
-      title: "System Design",
-      shortTitle: "Architecture",
-      badge: "xDesign",
-      tagline: "UI/UX & DB Schemas",
-      description: "Define the cloud architecture, technology stack, database schemas, APIs, and design systems.",
+      name: "Design",
+      pill: "xDesign",
       icon: Cpu,
-      color: "from-purple-500 to-fuchsia-600",
-      pillColor: "bg-purple-600 text-white",
-      borderColor: "border-purple-300",
-      accentBg: "bg-purple-50/80 text-purple-700",
-      pathColor: "#9333ea"
+      pillBg: "bg-[#d97706] text-white shadow-amber-500/20",
+      nodeColor: "border-amber-400 text-amber-600",
+      pathColor: "#f59e0b",
     },
+  ];
+
+  const rightStages = [
     {
       number: "04",
-      title: "Development",
-      shortTitle: "Development",
-      badge: "xCode",
-      tagline: "Agile Production Code",
-      description: "Build the product using modular, scalable, maintainable code with modern tech stacks and CI/CD.",
+      name: "Development",
+      pill: "xDevelopment",
       icon: Code2,
-      color: "from-emerald-500 to-teal-600",
-      pillColor: "bg-emerald-600 text-white",
-      borderColor: "border-emerald-300",
-      accentBg: "bg-emerald-50/80 text-emerald-700",
-      pathColor: "#059669"
+      pillBg: "bg-[#0284c7] text-white shadow-sky-500/20",
+      nodeColor: "border-sky-400 text-sky-600",
+      pathColor: "#0284c7",
     },
     {
       number: "05",
-      title: "Testing & QA",
-      shortTitle: "Testing & QA",
-      badge: "xStatus",
-      tagline: "Security & Validation",
-      description: "Validate functionality, load performance, security protocols, responsiveness, and reliability.",
+      name: "Testing & QA",
+      pill: "xTesting",
       icon: ShieldCheck,
-      color: "from-amber-500 to-orange-600",
-      pillColor: "bg-amber-500 text-white",
-      borderColor: "border-amber-300",
-      accentBg: "bg-amber-50/80 text-amber-700",
-      pathColor: "#d97706"
+      pillBg: "bg-[#0d9488] text-white shadow-teal-500/20",
+      nodeColor: "border-teal-400 text-teal-600",
+      pathColor: "#14b8a6",
     },
     {
       number: "06",
-      title: "Deployment",
-      shortTitle: "Deployment",
-      badge: "xDeploy",
-      tagline: "Zero-Downtime Release",
-      description: "Move tested applications into production on cloud infrastructure with automated DNS and SSL.",
+      name: "Deployment",
+      pill: "xDeploy",
       icon: Rocket,
-      color: "from-rose-500 to-pink-600",
-      pillColor: "bg-rose-600 text-white",
-      borderColor: "border-rose-300",
-      accentBg: "bg-rose-50/80 text-rose-700",
-      pathColor: "#e11d48"
+      pillBg: "bg-[#4f46e5] text-white shadow-indigo-500/20",
+      nodeColor: "border-indigo-400 text-indigo-600",
+      pathColor: "#6366f1",
     },
     {
       number: "07",
-      title: "Maintenance & Scaling",
-      shortTitle: "Scaling",
-      badge: "xScale",
-      tagline: "Telemetry & Growth",
-      description: "Monitor real-time telemetry, resolve issues, optimize speed, and scale as active usage grows.",
+      name: "Scaling",
+      pill: "xScale",
       icon: TrendingUp,
-      color: "from-cyan-500 to-blue-600",
-      pillColor: "bg-cyan-600 text-white",
-      borderColor: "border-cyan-300",
-      accentBg: "bg-cyan-50/80 text-cyan-700",
-      pathColor: "#0891b2"
-    }
+      pillBg: "bg-[#e11d48] text-white shadow-rose-500/20",
+      nodeColor: "border-rose-400 text-rose-600",
+      pathColor: "#f43f5e",
+    },
   ];
 
-  const activeStage = sdlcStages[activeStageIndex];
+  const allStages = [...leftStages, ...rightStages];
 
   return (
-    <section className="relative py-20 md:py-28 bg-white border-t border-slate-200/80 overflow-hidden">
+    <section className="relative py-20 md:py-28 bg-[#fafcff] border-t border-slate-200/80 overflow-hidden select-none">
       
-      {/* Subtle Technical Dot Matrix Background (Reference Image Inspired) */}
+      {/* Subtle Technical Dot Matrix Background (Matching Reference) */}
       <div 
-        className="absolute inset-0 opacity-[0.45] pointer-events-none"
+        className="absolute inset-0 opacity-[0.4] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(#94a3b8 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
           backgroundSize: '24px 24px'
         }}
       />
 
-      {/* Ambient Lighting Gradient */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-r from-brand-100/30 via-accent-100/20 to-emerald-100/30 blur-3xl pointer-events-none rounded-full" />
+      {/* Ambient Lighting Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-brand-100/40 via-purple-100/20 to-emerald-100/30 blur-3xl pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ================= SECTION HEADER ================= */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200/80 text-brand-700 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+        {/* ================= SECTION HEADER (MINIMAL) ================= */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
             <Zap className="w-3.5 h-3.5 text-brand-600" />
-            <span>SDLC Engineering Lifecycle</span>
+            <span>SDLC Circuit Architecture</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display leading-[1.15]">
-            Structured Milestones From Discovery to Scaling
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
+            Structured Milestones
           </h2>
 
-          <p className="mt-3.5 text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            A disciplined Software Development Life Cycle (SDLC) that moves your product from strategic blueprint to high-performance production and continuous scaling.
+          <p className="mt-2 text-slate-500 text-sm sm:text-base font-medium">
+            From Discovery to Scaling
           </p>
         </div>
 
-        {/* ================= DESKTOP & TABLET: INTERCONNECTED SDLC WORKFLOW ARCHITECTURE ================= */}
-        <div className="hidden lg:block relative py-6">
+        {/* ================= DESKTOP & TABLET: TWO-SIDED CIRCUIT WORKFLOW ================= */}
+        <div className="hidden lg:block relative max-w-6xl mx-auto min-h-[580px]">
           
-          {/* Top Row Stages (01, 02, 03) & Bottom Row Stages (04, 05, 06, 07) Layout */}
-          <div className="grid grid-cols-12 gap-y-16 gap-x-6 items-center relative">
-            
-            {/* ================= ROW 1 (STAGES 01, 02, 03) ================= */}
-            <div className="col-span-12 grid grid-cols-3 gap-8 relative z-10">
-              {sdlcStages.slice(0, 3).map((stage, idx) => {
-                const IconComp = stage.icon;
-                const isSelected = activeStageIndex === idx;
+          {/* SVG Circuit Canvas with Curved Traces & Signal Pulses */}
+          <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none z-0" 
+            viewBox="0 0 1152 580" 
+            fill="none"
+          >
+            <defs>
+              {/* Circuit glow filters */}
+              <filter id="circuitGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
 
-                return (
-                  <motion.div
-                    key={stage.number}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: idx * 0.1 }}
-                    onMouseEnter={() => setActiveStageIndex(idx)}
-                    onClick={() => setActiveStageIndex(idx)}
-                    className={`group relative p-6 rounded-3xl bg-white/95 backdrop-blur-md border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:-translate-y-1 ${
-                      isSelected 
-                        ? 'border-brand-400 ring-2 ring-brand-500/30 shadow-brand-500/10 scale-[1.02]' 
-                        : 'border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    {/* Header: Number, Pill, Status Pip */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xl font-extrabold font-display ${isSelected ? 'text-brand-600' : 'text-slate-400'}`}>
-                          {stage.number}
-                        </span>
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs ${stage.pillColor}`}>
-                          {stage.badge}
-                        </span>
-                      </div>
+            {/* ====== LEFT CIRCUIT TRACES (01, 02, 03 -> CENTER CORE) ====== */}
+            {/* Trace 01 (Top Left -> Center) */}
+            <path 
+              d="M 170 100 C 320 100, 360 250, 485 270" 
+              stroke="#a855f7" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 170 100 C 320 100, 360 250, 485 270" 
+              stroke="#c084fc" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-                      {/* Reference Image Style Pulse Pip */}
-                      <div className="flex items-center gap-1.5">
-                        <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-500 animate-ping' : 'bg-emerald-400'}`} />
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      </div>
-                    </div>
+            {/* Trace 02 (Middle Left -> Center) */}
+            <path 
+              d="M 170 290 C 310 290, 370 290, 485 290" 
+              stroke="#10b981" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 170 290 C 310 290, 370 290, 485 290" 
+              stroke="#34d399" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-                    {/* Icon & Title */}
-                    <div className="flex items-center gap-3 mb-2.5">
-                      <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${stage.color} text-white flex items-center justify-center shadow-sm shrink-0`}>
-                        <IconComp className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-base font-bold text-slate-900 leading-snug">
-                          {stage.title}
-                        </h3>
-                        <span className="text-[11px] font-medium text-slate-400 block">
-                          {stage.tagline}
-                        </span>
-                      </div>
-                    </div>
+            {/* Trace 03 (Bottom Left -> Center) */}
+            <path 
+              d="M 170 480 C 320 480, 360 330, 485 310" 
+              stroke="#f59e0b" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 170 480 C 320 480, 360 330, 485 310" 
+              stroke="#fbbf24" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-                    {/* Description */}
-                    <p className="text-xs text-slate-600 leading-relaxed mt-2 line-clamp-2">
-                      {stage.description}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
+            {/* ====== RIGHT CIRCUIT TRACES (CENTER CORE -> 04, 05, 06, 07) ====== */}
+            {/* Trace 04 (Center -> Top Right) */}
+            <path 
+              d="M 667 265 C 780 250, 840 85, 980 85" 
+              stroke="#0284c7" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 667 265 C 780 250, 840 85, 980 85" 
+              stroke="#38bdf8" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-            {/* ================= CONNECTING BEZIER VECTOR LINES (SVG CANVAS) ================= */}
-            <div className="col-span-12 relative h-12 flex items-center justify-center my-[-10px] pointer-events-none">
-              <svg className="w-full h-20" viewBox="0 0 1100 80" fill="none">
-                <defs>
-                  <linearGradient id="flowGrad1" x1="0" y1="0" x2="1100" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#0284c7" />
-                    <stop offset="0.33" stopColor="#4f46e5" />
-                    <stop offset="0.66" stopColor="#9333ea" />
-                    <stop offset="1" stopColor="#059669" />
-                  </linearGradient>
-                </defs>
+            {/* Trace 05 (Center -> Upper Middle Right) */}
+            <path 
+              d="M 667 280 C 780 280, 840 220, 980 220" 
+              stroke="#14b8a6" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 667 280 C 780 280, 840 220, 980 220" 
+              stroke="#2dd4bf" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-                {/* Main Connected Pathway */}
-                <path 
-                  d="M180 0 V30 C180 55, 920 15, 920 40 V80 M550 0 V80 M920 0 V80" 
-                  stroke="#cbd5e1" 
-                  strokeWidth="2" 
-                  strokeDasharray="4 4"
-                />
+            {/* Trace 06 (Center -> Lower Middle Right) */}
+            <path 
+              d="M 667 300 C 780 300, 840 360, 980 360" 
+              stroke="#6366f1" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 667 300 C 780 300, 840 360, 980 360" 
+              stroke="#818cf8" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
 
-                {/* Animated Luminous Pipeline Stream */}
-                <path 
-                  d="M180 20 H920" 
-                  stroke="url(#flowGrad1)" 
-                  strokeWidth="2" 
-                  strokeLinecap="round"
-                />
+            {/* Trace 07 (Center -> Bottom Right) */}
+            <path 
+              d="M 667 315 C 780 330, 840 500, 980 500" 
+              stroke="#f43f5e" 
+              strokeWidth="2" 
+              strokeOpacity="0.75" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 667 315 C 780 330, 840 500, 980 500" 
+              stroke="#fb7185" 
+              strokeWidth="2.5" 
+              strokeDasharray="8 24" 
+              className="animate-pulse"
+            />
+          </svg>
 
-                {/* Node Points on Path */}
-                <circle cx="180" cy="20" r="4" fill="#0284c7" />
-                <circle cx="550" cy="20" r="4" fill="#4f46e5" />
-                <circle cx="920" cy="20" r="4" fill="#9333ea" />
-              </svg>
-            </div>
-
-            {/* ================= ROW 2 (STAGES 04, 05, 06, 07) ================= */}
-            <div className="col-span-12 grid grid-cols-4 gap-6 relative z-10">
-              {sdlcStages.slice(3).map((stage, idx) => {
-                const actualIdx = idx + 3;
-                const IconComp = stage.icon;
-                const isSelected = activeStageIndex === actualIdx;
-
-                return (
-                  <motion.div
-                    key={stage.number}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: actualIdx * 0.08 }}
-                    onMouseEnter={() => setActiveStageIndex(actualIdx)}
-                    onClick={() => setActiveStageIndex(actualIdx)}
-                    className={`group relative p-5 rounded-3xl bg-white/95 backdrop-blur-md border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:-translate-y-1 ${
-                      isSelected 
-                        ? 'border-brand-400 ring-2 ring-brand-500/30 shadow-brand-500/10 scale-[1.02]' 
-                        : 'border-slate-200/90 hover:border-slate-300'
-                    }`}
-                  >
-                    {/* Header: Number, Pill, Status Pip */}
-                    <div className="flex items-center justify-between gap-2 mb-3.5">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-lg font-extrabold font-display ${isSelected ? 'text-brand-600' : 'text-slate-400'}`}>
-                          {stage.number}
-                        </span>
-                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-xs ${stage.pillColor}`}>
-                          {stage.badge}
-                        </span>
-                      </div>
-
-                      {/* Status Pip */}
-                      <div className="flex items-center gap-1">
-                        <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-emerald-500 animate-ping' : 'bg-emerald-400'}`} />
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      </div>
-                    </div>
-
-                    {/* Icon & Title */}
-                    <div className="flex items-center gap-2.5 mb-2">
-                      <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${stage.color} text-white flex items-center justify-center shadow-sm shrink-0`}>
-                        <IconComp className="w-4.5 h-4.5" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-bold text-slate-900 leading-snug">
-                          {stage.title}
-                        </h3>
-                        <span className="text-[10px] font-medium text-slate-400 block">
-                          {stage.tagline}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs text-slate-600 leading-relaxed mt-1.5 line-clamp-2">
-                      {stage.description}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ================= MOBILE & TABLET: VERTICAL CONNECTED TIMELINE ================= */}
-        <div className="block lg:hidden relative">
-          
-          {/* Vertical Glowing Connector Line */}
-          <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-sky-500 via-purple-500 to-cyan-500" />
-
-          <div className="space-y-5 relative z-10 pl-14">
-            {sdlcStages.map((stage, idx) => {
+          {/* ================= LEFT SIDE CIRCUIT NODES ================= */}
+          <div className="absolute left-0 top-0 bottom-0 w-[420px] flex flex-col justify-between py-2 z-10">
+            {leftStages.map((stage, idx) => {
               const IconComp = stage.icon;
-              const isSelected = activeStageIndex === idx;
+              const isHovered = hoveredStage === stage.number;
 
               return (
-                <motion.div
-                  key={stage.number}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: idx * 0.05 }}
-                  onClick={() => setActiveStageIndex(idx)}
-                  className={`relative p-5 rounded-2xl bg-white border transition-all duration-200 shadow-sm ${
-                    isSelected 
-                      ? 'border-brand-400 ring-2 ring-brand-500/20 shadow-md' 
-                      : 'border-slate-200/90'
-                  }`}
+                <div 
+                  key={stage.number} 
+                  className="relative flex items-center justify-between"
+                  onMouseEnter={() => setHoveredStage(stage.number)}
+                  onMouseLeave={() => setHoveredStage(null)}
                 >
-                  {/* Left Node Dot on the Vertical Line */}
-                  <div className="absolute -left-14 top-5 w-8 h-8 rounded-full bg-white border-2 border-brand-500 shadow-sm flex items-center justify-center text-xs font-bold text-brand-700">
-                    {stage.number}
-                  </div>
-
-                  {/* Stage Header */}
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${stage.pillColor}`}>
-                      {stage.badge}
-                    </span>
-                    <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-semibold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span>Active Stage</span>
+                  {/* Left Stage Node Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className={`w-36 sm:w-40 p-4 rounded-3xl bg-white/95 backdrop-blur-md border shadow-lg transition-all duration-300 ${
+                      isHovered ? `${stage.nodeColor} ring-2 ring-purple-400/30 shadow-xl` : 'border-slate-200/90'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700">
+                        <IconComp className="w-4 h-4" />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="text-xs font-mono font-bold text-slate-400">{stage.number}</span>
+                      </div>
                     </div>
+                    <h4 className="text-sm font-bold text-slate-900 font-display">
+                      {stage.name}
+                    </h4>
+                  </motion.div>
+
+                  {/* Connecting Milestone Pill (Positioned on the Circuit Line) */}
+                  <div className={`px-3.5 py-1 rounded-full text-xs font-semibold shadow-md ${stage.pillBg} transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`}>
+                    {stage.pill}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ================= CENTER ZAVYX CORE ENGINE HUB (MATCHING REFERENCE) ================= */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <motion.div 
+              whileHover={{ scale: 1.03 }}
+              className="w-48 h-48 sm:w-52 sm:h-52 rounded-[38px] bg-white/95 backdrop-blur-xl p-5 shadow-2xl border-4 border-white ring-2 ring-brand-400/30 shadow-brand-500/15 flex flex-col items-center justify-between text-center relative overflow-hidden"
+            >
+              {/* Glowing Inner Halo */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/10 via-emerald-500/5 to-purple-500/10 pointer-events-none" />
+
+              {/* Status Header */}
+              <div className="w-full flex items-center justify-between pt-1 text-[10px] font-mono text-slate-400">
+                <span className="flex items-center gap-1 text-emerald-600 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                  CORE
+                </span>
+                <span>v2.6 SDLC</span>
+              </div>
+
+              {/* Central Official Logo */}
+              <div className="relative py-2 flex items-center justify-center">
+                <img
+                  src={logoImg}
+                  alt="ZAVYX Technology Core"
+                  className="w-32 sm:w-36 h-auto object-contain drop-shadow-sm"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/ZAVYX_logo.png';
+                  }}
+                />
+              </div>
+
+              {/* Central Telemetry Badge */}
+              <div className="w-full py-1 rounded-xl bg-slate-50 border border-slate-200/80 text-[10px] font-bold text-slate-700 tracking-wider uppercase font-mono">
+                ENGINEERING HUB
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ================= RIGHT SIDE CIRCUIT NODES ================= */}
+          <div className="absolute right-0 top-0 bottom-0 w-[440px] flex flex-col justify-between py-1 z-10">
+            {rightStages.map((stage, idx) => {
+              const IconComp = stage.icon;
+              const isHovered = hoveredStage === stage.number;
+
+              return (
+                <div 
+                  key={stage.number} 
+                  className="relative flex items-center justify-between"
+                  onMouseEnter={() => setHoveredStage(stage.number)}
+                  onMouseLeave={() => setHoveredStage(null)}
+                >
+                  {/* Connecting Milestone Pill (Positioned on the Circuit Line) */}
+                  <div className={`px-3 py-1 rounded-full text-xs font-semibold shadow-md ${stage.pillBg} transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`}>
+                    {stage.pill}
                   </div>
 
-                  {/* Icon & Title */}
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${stage.color} text-white flex items-center justify-center shrink-0`}>
-                      <IconComp className="w-4 h-4" />
+                  {/* Right Stage Node Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className={`w-36 sm:w-40 p-3.5 rounded-3xl bg-white/95 backdrop-blur-md border shadow-lg transition-all duration-300 ${
+                      isHovered ? `${stage.nodeColor} ring-2 ring-sky-400/30 shadow-xl` : 'border-slate-200/90'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="w-7 h-7 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700">
+                        <IconComp className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="text-xs font-mono font-bold text-slate-400">{stage.number}</span>
+                      </div>
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900">
-                      {stage.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {stage.description}
-                  </p>
-                </motion.div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-display">
+                      {stage.name}
+                    </h4>
+                  </motion.div>
+                </div>
               );
             })}
           </div>
 
         </div>
 
-        {/* ================= BOTTOM SDLC VALUE BANNER ================= */}
-        <div className="mt-12 pt-8 border-t border-slate-200/70 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-            <span>End-to-End Enterprise Governance &bull; Zero Technical Debt</span>
+        {/* ================= MOBILE: VERTICAL CIRCUIT BOARD LAYOUT ================= */}
+        <div className="block lg:hidden relative max-w-md mx-auto">
+          
+          {/* Top Integrated ZAVYX Core Hub */}
+          <div className="flex justify-center mb-8">
+            <div className="w-44 p-4 rounded-3xl bg-white border-2 border-brand-200 shadow-xl text-center space-y-2">
+              <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-emerald-600 uppercase font-mono">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                <span>ZAVYX CORE</span>
+              </div>
+              <img
+                src={logoImg}
+                alt="ZAVYX"
+                className="h-7 w-auto object-contain mx-auto"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/images/ZAVYX_logo.png';
+                }}
+              />
+            </div>
           </div>
 
-          <Link
-            to="/start-a-project"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-700 group"
-          >
-            <span>Plan Your Project Lifecycle with ZAVYX</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          {/* Central Vertical Circuit Spine */}
+          <div className="relative pl-6 sm:pl-8 border-l-2 border-dashed border-slate-300 ml-4 sm:ml-6 space-y-6">
+            {allStages.map((stage, idx) => {
+              const IconComp = stage.icon;
+
+              return (
+                <div key={stage.number} className="relative">
+                  {/* Node Dot on the Spine */}
+                  <div className="absolute -left-[31px] sm:-left-[39px] top-4 w-5 h-5 rounded-full bg-white border-2 border-brand-500 shadow-sm flex items-center justify-center">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  </div>
+
+                  {/* Stage Card */}
+                  <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                        <IconComp className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-mono font-bold text-slate-400">{stage.number}</span>
+                          <h4 className="text-sm font-bold text-slate-900">{stage.name}</h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase ${stage.pillBg} shrink-0`}>
+                      {stage.pill}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>
