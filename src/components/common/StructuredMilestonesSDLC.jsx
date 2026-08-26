@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Compass, 
   FileText, 
   Cpu, 
   Code2, 
   ShieldCheck, 
   Rocket, 
   TrendingUp,
-  Zap,
-  ArrowRight
+  Zap
 } from 'lucide-react';
 import logoImg from '../../assets/logo/logo.png';
 
@@ -17,123 +15,107 @@ export default function StructuredMilestonesSDLC() {
   const [hoveredStage, setHoveredStage] = useState(null);
 
   const stages = [
-    // LEFT SIDE
+    // LEFT SIDE (3 STAGES)
     {
       id: "01",
       number: "01",
-      name: "Discovery",
-      pill: "xDiscovery",
-      icon: Compass,
-      side: "left",
-      nodeX: 130,
-      nodeY: 110,
-      badgeX: 345,
-      badgeY: 160,
-      path: "M 205 110 C 280 110, 290 160, 345 160 C 400 160, 420 270, 490 270",
-      color: "#a855f7",
-      pillBg: "bg-purple-600",
-      textColor: "text-purple-600",
-      borderColor: "border-purple-400",
-    },
-    {
-      id: "02",
-      number: "02",
       name: "Requirements",
       pill: "xRequirements",
       icon: FileText,
       side: "left",
       nodeX: 130,
-      nodeY: 320,
+      nodeY: 110,
       badgeX: 345,
-      badgeY: 320,
-      path: "M 205 320 L 490 320",
-      color: "#10b981",
+      badgeY: 175,
+      path: "M 205 110 C 280 110, 290 175, 345 175 C 400 175, 430 240, 490 240",
+      color: "#059669",
       pillBg: "bg-emerald-600",
       textColor: "text-emerald-600",
       borderColor: "border-emerald-400",
     },
     {
-      id: "03",
-      number: "03",
-      name: "Design",
+      id: "02",
+      number: "02",
+      name: "System Design",
       pill: "xDesign",
       icon: Cpu,
       side: "left",
       nodeX: 130,
-      nodeY: 530,
+      nodeY: 290,
       badgeX: 345,
-      badgeY: 480,
-      path: "M 205 530 C 280 530, 290 480, 345 480 C 400 480, 420 370, 490 370",
-      color: "#f59e0b",
+      badgeY: 290,
+      path: "M 205 290 L 490 290",
+      color: "#d97706",
       pillBg: "bg-amber-500",
       textColor: "text-amber-600",
       borderColor: "border-amber-400",
     },
-    // RIGHT SIDE
     {
-      id: "04",
-      number: "04",
+      id: "03",
+      number: "03",
       name: "Development",
       pill: "xDevelopment",
       icon: Code2,
-      side: "right",
-      nodeX: 1070,
-      nodeY: 95,
-      badgeX: 850,
-      badgeY: 150,
-      path: "M 710 260 C 770 260, 800 150, 850 150 C 900 150, 930 95, 995 95",
+      side: "left",
+      nodeX: 130,
+      nodeY: 470,
+      badgeX: 345,
+      badgeY: 405,
+      path: "M 205 470 C 280 470, 290 405, 345 405 C 400 405, 430 340, 490 340",
       color: "#0284c7",
       pillBg: "bg-sky-600",
       textColor: "text-sky-600",
       borderColor: "border-sky-400",
     },
+
+    // RIGHT SIDE (3 STAGES)
     {
-      id: "05",
-      number: "05",
+      id: "04",
+      number: "04",
       name: "Testing & QA",
       pill: "xTesting",
       icon: ShieldCheck,
       side: "right",
       nodeX: 1070,
-      nodeY: 245,
-      badgeX: 850,
-      badgeY: 270,
-      path: "M 710 300 C 770 300, 800 270, 850 270 C 900 270, 930 245, 995 245",
-      color: "#14b8a6",
+      nodeY: 110,
+      badgeX: 855,
+      badgeY: 175,
+      path: "M 710 240 C 770 240, 800 175, 855 175 C 910 175, 920 110, 995 110",
+      color: "#0d9488",
       pillBg: "bg-teal-600",
       textColor: "text-teal-600",
       borderColor: "border-teal-400",
     },
     {
-      id: "06",
-      number: "06",
+      id: "05",
+      number: "05",
       name: "Deployment",
       pill: "xDeploy",
       icon: Rocket,
       side: "right",
       nodeX: 1070,
-      nodeY: 395,
-      badgeX: 850,
-      badgeY: 370,
-      path: "M 710 340 C 770 340, 800 370, 850 370 C 900 370, 930 395, 995 395",
-      color: "#6366f1",
+      nodeY: 290,
+      badgeX: 855,
+      badgeY: 290,
+      path: "M 710 290 L 995 290",
+      color: "#4f46e5",
       pillBg: "bg-indigo-600",
       textColor: "text-indigo-600",
       borderColor: "border-indigo-400",
     },
     {
-      id: "07",
-      number: "07",
+      id: "06",
+      number: "06",
       name: "Scaling",
       pill: "xScale",
       icon: TrendingUp,
       side: "right",
       nodeX: 1070,
-      nodeY: 545,
-      badgeX: 850,
-      badgeY: 490,
-      path: "M 710 380 C 770 380, 800 490, 850 490 C 900 490, 930 545, 995 545",
-      color: "#f43f5e",
+      nodeY: 470,
+      badgeX: 855,
+      badgeY: 405,
+      path: "M 710 340 C 770 340, 800 405, 855 405 C 910 405, 920 470, 995 470",
+      color: "#e11d48",
       pillBg: "bg-rose-600",
       textColor: "text-rose-600",
       borderColor: "border-rose-400",
@@ -141,11 +123,11 @@ export default function StructuredMilestonesSDLC() {
   ];
 
   return (
-    <section className="relative py-20 md:py-28 bg-[#fafcff] border-t border-slate-200/80 overflow-hidden select-none">
+    <section className="relative py-16 md:py-24 bg-[#fafcff] border-t border-slate-200/80 overflow-hidden select-none">
       
       {/* Dot Grid Canvas Background */}
       <div 
-        className="absolute inset-0 opacity-[0.4] pointer-events-none"
+        className="absolute inset-0 opacity-[0.35] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(#94a3b8 1.2px, transparent 1.2px)`,
           backgroundSize: '24px 24px'
@@ -153,13 +135,13 @@ export default function StructuredMilestonesSDLC() {
       />
 
       {/* Ambient Lighting Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-brand-100/40 via-purple-100/20 to-emerald-100/30 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[400px] bg-gradient-to-tr from-brand-100/40 via-purple-100/20 to-emerald-100/30 blur-3xl pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ================= SECTION HEADER ================= */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-slate-700 text-xs font-bold uppercase tracking-wider mb-2.5 shadow-xs">
             <Zap className="w-3.5 h-3.5 text-brand-600" />
             <span>SDLC Circuit Architecture</span>
           </div>
@@ -169,17 +151,16 @@ export default function StructuredMilestonesSDLC() {
           </h2>
 
           <p className="mt-2 text-slate-500 text-sm sm:text-base font-medium">
-            From Discovery to Scaling
+            From Requirements to Scaling
           </p>
         </div>
 
-        {/* ================= DESKTOP INTEGRATED SVG CIRCUIT CANVAS ================= */}
-        <div className="hidden lg:block relative w-full max-w-6xl mx-auto aspect-[1200/640]">
+        {/* ================= DESKTOP INTEGRATED SVG CIRCUIT CANVAS (3-LEFT / 3-RIGHT PERFECT SYMMETRY) ================= */}
+        <div className="hidden lg:block relative w-full max-w-6xl mx-auto aspect-[1200/580]">
           
-          {/* Main SVG containing exact paths, animated signals, nodes and badges */}
           <svg 
             className="w-full h-full" 
-            viewBox="0 0 1200 640" 
+            viewBox="0 0 1200 580" 
             fill="none"
           >
             {/* ====== 1. WIREFRAME PATHS CONNECTING NODES TO CENTER ====== */}
@@ -219,9 +200,9 @@ export default function StructuredMilestonesSDLC() {
               return (
                 <foreignObject
                   key={`badge-${stage.id}`}
-                  x={stage.badgeX - 60}
+                  x={stage.badgeX - 65}
                   y={stage.badgeY - 16}
-                  width="120"
+                  width="130"
                   height="32"
                   className="overflow-visible"
                 >
@@ -286,9 +267,9 @@ export default function StructuredMilestonesSDLC() {
             {/* ====== 4. CENTER ZAVYX CORE HUB ====== */}
             <foreignObject
               x="490"
-              y="220"
+              y="195"
               width="220"
-              height="200"
+              height="190"
               className="overflow-visible"
             >
               <div className="w-full h-full flex items-center justify-center">
@@ -330,11 +311,11 @@ export default function StructuredMilestonesSDLC() {
           </svg>
         </div>
 
-        {/* ================= MOBILE: VERTICAL CONNECTED TIMELINE ================= */}
-        <div className="block lg:hidden relative max-w-md mx-auto">
+        {/* ================= MOBILE: RESPONSIVE VERTICAL CONNECTED CIRCUIT TIMELINE ================= */}
+        <div className="block lg:hidden relative max-w-md mx-auto px-2">
           
           {/* Top Integrated ZAVYX Core Hub */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-7">
             <div className="w-48 p-4 rounded-3xl bg-white border-2 border-brand-200 shadow-xl text-center space-y-2">
               <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-emerald-600 uppercase font-mono">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
@@ -353,7 +334,7 @@ export default function StructuredMilestonesSDLC() {
           </div>
 
           {/* Central Vertical Circuit Spine */}
-          <div className="relative pl-6 sm:pl-8 border-l-2 border-dashed border-slate-300 ml-4 sm:ml-6 space-y-5">
+          <div className="relative pl-6 sm:pl-8 border-l-2 border-dashed border-slate-300 ml-4 sm:ml-6 space-y-4">
             {stages.map((stage) => {
               const IconComp = stage.icon;
 
@@ -365,15 +346,15 @@ export default function StructuredMilestonesSDLC() {
                   </div>
 
                   {/* Stage Card */}
-                  <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                       <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 shrink-0">
                         <IconComp className="w-4 h-4" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
                           <span className="text-xs font-mono font-bold text-slate-400">{stage.number}</span>
-                          <h4 className="text-sm font-bold text-slate-900">{stage.name}</h4>
+                          <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate">{stage.name}</h4>
                         </div>
                       </div>
                     </div>
